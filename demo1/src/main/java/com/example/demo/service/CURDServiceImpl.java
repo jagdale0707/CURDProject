@@ -21,11 +21,11 @@ import java.util.Optional;
 @Service
 public class CURDServiceImpl implements CURDService {
     private final CURDRepo curdRepo;
-    private final CURDMapper mapper;
+    @Autowired(required=true)
+    private CURDMapper mapper;
 
-    public CURDServiceImpl(CURDRepo curdRepo, CURDMapper mapper) {
+    public CURDServiceImpl(CURDRepo curdRepo) {
         this.curdRepo = curdRepo;
-        this.mapper = mapper;
     }
 
     @Override
