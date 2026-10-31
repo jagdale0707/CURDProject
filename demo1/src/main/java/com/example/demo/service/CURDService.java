@@ -9,13 +9,13 @@ import java.util.List;
 public interface CURDService {
     ResponseEntity<List<CURDResponse>> getResources();
 
-    ResponseEntity<CURDResponse> getResource(long id);
+    ResponseEntity<CURDResponse> getResource(Long id);
 
     ResponseEntity<CURDResponse> createResource(CURDRequest curdRequest);
 
-    ResponseEntity updateResource(CURDRequest curdRequest);
+    ResponseEntity<CURDResponse> updateResource(Long id, CURDRequest curdRequest);
 
-    ResponseEntity partialSave(CURDRequest curdRequest);
+    ResponseEntity<CURDResponse> partialSave(Long id, CURDRequest curdRequest);
 
-    ResponseEntity deleteResouorce(long id);
+    ResponseEntity<?> deleteResource(Long id);
 }

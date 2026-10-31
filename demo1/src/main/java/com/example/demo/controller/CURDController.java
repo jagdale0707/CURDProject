@@ -27,7 +27,7 @@ public class CURDController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CURDResponse> getResource(@PathVariable("id") long id) {
+    public ResponseEntity<CURDResponse> getResource(@PathVariable("id") Long id) {
         logger.info("Fetching resource with associated id : {}", id);
         return curdService.getResource(id);
     }
@@ -39,20 +39,20 @@ public class CURDController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity updateResource(@PathVariable("id") long id, @RequestBody CURDRequest curdRequest) {
+    public ResponseEntity updateResource(@PathVariable("id") Long id, @RequestBody CURDRequest curdRequest) {
         logger.info("Updating existing resource with name: {}", curdRequest.name());
-        return curdService.updateResource(curdRequest);
+        return curdService.updateResource(id, curdRequest);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity partialSave(@PathVariable("id") long id, @RequestBody CURDRequest curdRequest) {
+    public ResponseEntity partialSave(@PathVariable("id") Long id, @RequestBody CURDRequest curdRequest) {
         logger.info("Performing partial update for resource with name: {}", curdRequest.name());
-        return curdService.partialSave(curdRequest);
+        return curdService.partialSave(id, curdRequest);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteResource(@PathVariable("id") long id) {
+    public ResponseEntity<?> deleteResource(@PathVariable("id") Long id) {
         logger.info("Deleting resource for id: ", id);
-        return curdService.deleteResouorce(id);
+        return curdService.deleteResource(id);
     }
 }
